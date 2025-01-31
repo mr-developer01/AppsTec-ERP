@@ -9,14 +9,19 @@
     <main>
         <div id="loan-amount">
             <h1>What Is The Amount Of Loan You Want To Borrow?</h1>
-            <input id="amountEnter" type="number">
+            <input id="amountEnter" type="number" placeholder="Enter Loan Amount">
+            <input id="loanEMI" type="number" placeholder="Enter EMI">
+            <input id="years-count" type="number" placeholder="Enter Total Year">
             <button id="btn">Calculate</button>
         </div>
+        <div id="loanAmount-div">
+            Total Loan Amount Is : ₹<span id="loanAmount">00</span>
+        </div>
         <div id="emi">
-            Monthly EMI Is : <span id="emi-cost">₹ 00</span>
+            Monthly EMI Is : ₹<span id="emi-cost">00</span>
         </div>
         <div id="pay">
-            Total Amount Payable Is <span id="pay-amount">₹ 00</span>
+            Total Amount Payable Is ₹<span id="pay-amount">00</span>
         </div>
     </main>
 

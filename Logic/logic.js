@@ -11,10 +11,10 @@ for (let i = 0; i < words.length; i++) {
 console.log(obj, maxOccurence);
 
 function checkMidChar(data) {
-  const midVal = Math.floor(data.length / 2);
-  const res = data.length % 2 === 0 ? data[midVal] + data[midVal + 1] : data[midVal];
 
-  return res;
+  const midVal = Math.floor(data.length / 2);
+  return data.length % 2 === 0 ? data[midVal] + data[midVal + 1] : data[midVal];
+  
 }
 
 console.log(checkMidChar("a"));
