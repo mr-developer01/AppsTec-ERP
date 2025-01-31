@@ -46,3 +46,15 @@ function getDay(date) {
 
   return {day, dayNum, month, year}
 }
+
+const arr = ["a", "b", "c", "d", "e", "f","a", "b", "c", "d", "e", "f", "a", "f", "f"]
+let maxOccurence = "";
+const obj = {};
+for(let i = 0; i < arr.length; i++) {
+  obj[arr[i]] = (obj[arr[i]] || 0) + 1;
+  if(maxOccurence === "" || obj[arr[i]] > obj[maxOccurence]){
+    maxOccurence = arr[i];
+  }
+}
+
+console.log(obj, maxOccurence);
