@@ -17,4 +17,4 @@ function checkMidChar(data) {
   return res;
 }
 
-console.log(checkMidChar("test"));
+console.log(checkMidChar("a"));
