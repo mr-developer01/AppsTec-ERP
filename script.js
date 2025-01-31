@@ -2,32 +2,37 @@ const temperature = document.getElementById("temperature");
 const cityName = document.getElementById("city-name");
 const day = document.getElementById("day");
 const time = document.getElementById("time");
+const imgCondition = document.getElementById("img-condition");
 // const date = document.getElementById("date");
 
-async function getWeatherData(place) {
+const key2 = "bf350ef18e5d84b5e057d876b20185c1";
+
+
+const api2 = `http://api.weatherstack.com/current?access_key=${key2}&query=${"india"}`;
+async function getWeatherData() {
   const presentDay = getDay(new Date());
   console.log(presentDay);
 
-  const url = `https://api.weatherstack.com/current?access_key=c4bd84c2fa4b9bb3aa9fd5964f7ea2f4&query=${place}`;
-  const options = {
-    method: "GET",
-  };
-
   try {
-    const response = await fetch(url, options);
-    const result = await response.text();
-    const data = JSON.parse(result);
-    temperature.textContent = `${data.current.temperature}°C`;
-    cityName.textContent = data.location.name;
-    day.textContent = presentDay;
-    time.textContent = data.current.observation_time;
-    console.log(data);
+    const data = await fetch(api2);
+    const jsonData = await data.json();
+    console.log(jsonData);
+
+    temperature.textContent = `${jsonData?.current?.temperature}°C`;
+    cityName.textContent = jsonData?.location?.name;
+    day.textContent = presentDay?.day;
+    time.textContent = jsonData?.current?.observation_time;
+    imgCondition.src = jsonData?.current?.weather_icons[0];
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
+
+
 }
 
-getWeatherData("America");
+// getWeatherData();
+
+// getWeatherData("America");
 
 function getDay(date) {
   const days = [
@@ -44,15 +49,31 @@ function getDay(date) {
   const month = date.toLocaleString("en-US", { month: "short" });
   const year = date.getFullYear().toString().slice(-2);
 
-  return {day, dayNum, month, year}
+  return { day, dayNum, month, year };
 }
 
-const arr = ["a", "b", "c", "d", "e", "f","a", "b", "c", "d", "e", "f", "a", "f", "f"]
+const arr = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "a",
+  "f",
+  "f",
+];
 let maxOccurence = "";
 const obj = {};
-for(let i = 0; i < arr.length; i++) {
+for (let i = 0; i < arr.length; i++) {
   obj[arr[i]] = (obj[arr[i]] || 0) + 1;
-  if(maxOccurence === "" || obj[arr[i]] > obj[maxOccurence]){
+  if (maxOccurence === "" || obj[arr[i]] > obj[maxOccurence]) {
     maxOccurence = arr[i];
   }
 }
